@@ -1,0 +1,39 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Discord Bot Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "discord_bot_runner"
+
+[[workflows.workflow]]
+name = "Discord Bot Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm init -y && npm install discord.js dotenv && cp .env.example .env && echo \"Please update the .env file with your Discord bot token\" && node index.js"
+
+[[workflows.workflow]]
+name = "discord_bot_runner"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp .env.example .env && npm install discord.js dotenv && node index.js"
+
+[deployment]
+run = ["sh", "-c", "npm init -y && npm install discord.js dotenv && cp .env.example .env && echo \"Please update the .env file with your Discord bot token\" && node index.js"]
