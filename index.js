@@ -32,7 +32,7 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once(Events.ClientReady, () => {
-  console.log(`Ready! Logged in as ${client.user.tag}`);
+  console.log(`Bot online and connected to ${client.user.tag}`);
 });
 
 // Handle interactions (slash commands)

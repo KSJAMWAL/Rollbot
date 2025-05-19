@@ -16,11 +16,7 @@ module.exports = {
         content: `<@${interaction.user.id}>, ${rollResult.message}`,
         ephemeral: false // Make the response visible to everyone
       });
-      
-      // Log the roll for tracking purposes
-      console.log(`User ${interaction.user.tag} rolled: ${rollResult.type}`);
     } catch (error) {
-      console.error('Error in roll command:', error);
       await interaction.reply({
         content: 'Something went wrong with your roll. Please try again later.',
         ephemeral: true
@@ -35,11 +31,7 @@ module.exports = {
       
       // Reply with the roll result
       await interaction.reply(`<@${interaction.user.id}>, ${rollResult.message}`);
-      
-      // Log the roll for tracking purposes
-      console.log(`User ${interaction.user.tag} rolled: ${rollResult.type}`);
     } catch (error) {
-      console.error('Error in legacy roll command:', error);
       await interaction.reply('Something went wrong with your roll. Please try again later.');
     }
   }
