@@ -21,7 +21,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm init -y && npm install discord.js dotenv && cp .env.example .env && echo \"Please update the .env file with your Discord bot token\" && node index.js"
+args = "node index.js"
 
 [deployment]
 run = ["sh", "-c", "npm init -y && npm install discord.js dotenv && cp .env.example .env && echo \"Please update the .env file with your Discord bot token\" && node index.js"]

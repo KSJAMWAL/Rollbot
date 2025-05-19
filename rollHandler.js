@@ -32,10 +32,19 @@ const REWARDS = {
  * Generates a random number between min and max (inclusive)
  * @param {number} min - Minimum value
  * @param {number} max - Maximum value
+ * @param {boolean} weighted - If true, applies a weighted distribution favoring lower values
  * @returns {number} Random number between min and max
  */
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function getRandomNumber(min, max, weighted = false) {
+  if (!weighted) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
+  // For weighted distribution - higher chance of getting lower values
+  // Using a square root distribution to favor lower numbers
+  const randomValue = Math.random(); 
+  const weightedRandom = Math.sqrt(randomValue); // Square root gives bias towards lower values
+  return Math.floor(weightedRandom * (max - min + 1)) + min;
 }
 
 /**
@@ -56,8 +65,8 @@ function performRoll() {
   
   // Determine which reward category was rolled
   if (randomValue < REWARDS.OWO.probability) {
-    // 50% chance: OWO currency
-    const amount = getRandomNumber(REWARDS.OWO.minAmount, REWARDS.OWO.maxAmount);
+    // 75% chance: OWO currency with higher chance of getting less than 150K
+    const amount = getRandomNumber(REWARDS.OWO.minAmount, REWARDS.OWO.maxAmount, true);
     return {
       type: 'OWO',
       amount: amount,
