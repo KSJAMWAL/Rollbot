@@ -40,11 +40,15 @@ function getRandomNumber(min, max, weighted = false) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   
-  // For weighted distribution - higher chance of getting lower values
-  // Using a square root distribution to favor lower numbers
-  const randomValue = Math.random(); 
-  const weightedRandom = Math.sqrt(randomValue); // Square root gives bias towards lower values
-  return Math.floor(weightedRandom * (max - min + 1)) + min;
+  // For Owo specific distribution - 90% chance of 100K-175K, 10% chance of 176K-300K
+  const randomValue = Math.random();
+  if (randomValue < 0.9) {
+    // 90% chance of getting between 100K-175K
+    return Math.floor(Math.random() * (175000 - 100000 + 1)) + 100000;
+  } else {
+    // 10% chance of getting between 176K-300K
+    return Math.floor(Math.random() * (300000 - 176000 + 1)) + 176000;
+  }
 }
 
 /**
@@ -78,7 +82,7 @@ function performRoll() {
     return {
       type: 'NITRO',
       link: link,
-      message: `🎉 You rolled **${REWARDS.NITRO.label}**!\nYou won one promo link!`
+      message: `🎉 You rolled **${REWARDS.NITRO.label}**!\nYou won one nitro promolink!`
     };
   } else {
     // 5% chance: INR reward
