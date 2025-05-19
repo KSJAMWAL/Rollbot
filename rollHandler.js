@@ -6,13 +6,13 @@
 // Define the reward probabilities and ranges
 const REWARDS = {
   OWO: {
-    probability: 0.5, // 50%
+    probability: 0.75, // 75%
     minAmount: 100000, // 100k
-    maxAmount: 500000, // 500k
+    maxAmount: 300000, // 300k
     label: 'Owo currency'
   },
   NITRO: {
-    probability: 0.45, // 45%
+    probability: 0.20, // 20%
     links: [
       'https://discord.com/billing/promotions/nitro',
       'https://discord.com/promotions/nitro/classic',
@@ -64,12 +64,12 @@ function performRoll() {
       message: `🎉 You rolled **${REWARDS.OWO.label}** and won **${amount.toLocaleString()} Owo**!`
     };
   } else if (randomValue < REWARDS.OWO.probability + REWARDS.NITRO.probability) {
-    // 45% chance: Nitro promo link
+    // 20% chance: Nitro promo link
     const link = getRandomNitroLink();
     return {
       type: 'NITRO',
       link: link,
-      message: `🎉 You rolled **${REWARDS.NITRO.label}**!\nHere's your link: ${link}`
+      message: `🎉 You rolled **${REWARDS.NITRO.label}**!\nYou won one promo link!`
     };
   } else {
     // 5% chance: INR reward
