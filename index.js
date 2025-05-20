@@ -59,7 +59,7 @@ client.on(Events.InteractionCreate, async interaction => {
     }
   }
 });
-
+module.exports = app;
 // Listen for messages for legacy prefix command support
 const PREFIX = process.env.PREFIX || '!';
 
