@@ -1,5 +1,5 @@
 {
-  "versions": 2.49,
+  "versions":,
   "builds": [
     {
       "src": "./index.js",
